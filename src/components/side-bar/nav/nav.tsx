@@ -8,6 +8,7 @@ export interface LinkItemProps {
   name: string
   icon: IconType
   active: boolean
+  path: string
 }
 
 export interface NavProps extends BoxProps {
@@ -18,8 +19,8 @@ export interface NavProps extends BoxProps {
 
 export const Nav = ({ onClose, linkItems, collapsed, ...rest }: NavProps) => (
   <Stack
-    h="full"
-    overflow="hidden"
+    // h="full"
+    // overflow="hidden"
     transition=".3s ease"
     w={{ base: 'full', md: 'fit-content' }}
     {...rest}

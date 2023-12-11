@@ -1,17 +1,8 @@
-'use client'
-
 import { Drawer, DrawerContent, Flex } from '@chakra-ui/react'
-import { FiCompass, FiHeart, FiHome, FiPhone, FiTable, FiTrendingUp } from 'react-icons/fi'
+import { useRef } from 'react'
+import { FiCompass, FiHeart, FiPhone, FiTable, FiTrendingUp } from 'react-icons/fi'
+import { Paths } from 'src/router'
 import { LinkItemProps, Nav } from './nav'
-
-const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome, active: false },
-  { name: 'Recommended', icon: FiTrendingUp, active: true },
-  { name: 'Categories', icon: FiTable, active: false },
-  { name: 'Suggest a category', icon: FiCompass, active: false },
-  { name: 'Favorites', icon: FiHeart, active: false },
-  { name: 'Contact Us', icon: FiPhone, active: false },
-]
 
 interface SidebarWithHeaderProps {
   // onOpen: () => void
@@ -20,28 +11,42 @@ interface SidebarWithHeaderProps {
   collapsed?: boolean
 }
 
-const Sidebar = ({ isOpen, onClose, collapsed }: SidebarWithHeaderProps) => (
-  <Flex as="nav" h="full" minH="full">
-    <Nav
-      collapsed={collapsed}
-      linkItems={LinkItems}
-      onClose={() => onClose}
-      display={{ base: 'none', md: 'flex' }}
-    />
-    <Drawer
-      isOpen={isOpen}
-      placement="left"
-      onClose={onClose}
-      returnFocusOnClose={false}
-      onOverlayClick={onClose}
-      size="full"
-    >
-      <DrawerContent>
-        <Nav onClose={onClose} linkItems={LinkItems} />
-      </DrawerContent>
-    </Drawer>
-  </Flex>
-)
+const Sidebar = ({ isOpen, onClose, collapsed }: SidebarWithHeaderProps) => {
+  const linkItems = useRef<LinkItemProps[]>([
+    {
+      name: 'Recommended',
+      path: Paths.recommended,
+      icon: FiTrendingUp,
+      active: true,
+    },
+    { name: 'Categories', path: Paths.categories, icon: FiTable, active: false },
+    { name: 'Suggest a category', path: Paths.suggestCategory, icon: FiCompass, active: false },
+    { name: 'Favorites', path: Paths.favorites, icon: FiHeart, active: false },
+    { name: 'Contact Us', path: Paths.contactUs, icon: FiPhone, active: false },
+  ])
+  return (
+    <Flex as="nav">
+      <Nav
+        collapsed={collapsed}
+        linkItems={linkItems.current}
+        onClose={() => onClose}
+        display={{ base: 'none', md: 'flex' }}
+      />
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        returnFocusOnClose={false}
+        onOverlayClick={onClose}
+        size="full"
+      >
+        <DrawerContent>
+          <Nav onClose={onClose} linkItems={linkItems.current} />
+        </DrawerContent>
+      </Drawer>
+    </Flex>
+  )
+}
 
 export default Sidebar
 

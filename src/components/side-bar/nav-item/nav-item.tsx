@@ -1,6 +1,7 @@
 import { Flex, FlexProps, Icon, Box, Text, useColorModeValue } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IconType } from 'react-icons'
+import { Link } from 'react-router-dom'
 import { useHoverColor as useHoverColors } from 'src/theme'
 import { CustomColors } from 'src/theme/colors'
 
@@ -9,26 +10,26 @@ export interface NavItemProps extends FlexProps {
   children: React.ReactNode
   collapsed?: boolean
   active?: boolean
+  path: string
 }
 
-export const NavItem = ({ icon, children, collapsed, active, ...rest }: NavItemProps) => {
+export const NavItem = ({ icon, children, collapsed, active, path, ...rest }: NavItemProps) => {
   const colors = useHoverColors()
 
   const unActiveIconColor = useColorModeValue(CustomColors.lightBrand, 'white')
 
   const iconColor = active ? 'white' : unActiveIconColor
   return (
-    <Box as="a" href="#" _focus={{ boxShadow: 'none' }}>
+    <Box as={Link} to={path} _focus={{ boxShadow: 'none' }}>
       <Flex
         as={motion.div}
         align="center"
-        p="4"
-        h="14"
+        p={4}
+        h={14}
         borderLeftRadius={{ base: 'none', lg: 'lg' }}
         borderRightRadius="lg"
         role="group"
         cursor="pointer"
-        overflow="hidden"
         color={active ? colors.color : 'unset'}
         bg={active ? colors.bg : 'unset'}
         _hover={colors}
@@ -66,7 +67,7 @@ export const NavItem = ({ icon, children, collapsed, active, ...rest }: NavItemP
 
 const textAnimation = {
   hidden: { width: 0.1, marginLeft: 0, opacity: 0 },
-  visible: { width: '100%', opacity: 1, marginLeft: 16 },
+  visible: { width: 'auto', opacity: 1, marginLeft: 16 },
 }
 
 const AnimatedText = motion(Text)

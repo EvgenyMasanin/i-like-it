@@ -1,19 +1,21 @@
-import { BrandColorTheme, ChakraColors } from 'src/theme/colors'
+import { theme } from '@chakra-ui/react'
+import { BrandColorTheme } from 'src/theme/colors'
 import { GetNewDefaultButtonVariantStyleFunction, variantColor } from '../button.types'
 
 export const getNewDefaultButtonVariantStyleFunction: GetNewDefaultButtonVariantStyleFunction =
-  (buttonVariant) =>
-  ({ colorScheme }) => {
+  (buttonVariant) => (props) => {
     const brandColor = variantColor[buttonVariant]
 
-    const isBrand = colorScheme === BrandColorTheme
+    const isBrand = props.colorScheme === BrandColorTheme
 
     const brandColorScheme = {
       color: brandColor,
     }
 
+    const defaultVariantStyle = theme.components.Button.variants![buttonVariant]
+
     const defaultColorScheme = {
-      color: ChakraColors.initial,
+      color: defaultVariantStyle(props).color,
     }
 
     return isBrand ? brandColorScheme : defaultColorScheme

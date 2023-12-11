@@ -1,7 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import { Box, Hide, SimpleGrid, forwardRef } from '@chakra-ui/react'
+import { useRef } from 'react'
+import { Box, Hide, SimpleGrid } from '@chakra-ui/react'
+import { useScroll } from 'framer-motion'
 import { CategoryCard } from 'src/components/category-card'
 import { Search } from 'src/components/search'
+import { TopButton } from 'src/components/top-button'
 
 interface Category {
   id: number
@@ -24,25 +27,36 @@ const categories: Array<Category> = Array(130)
         : 'https://images.unsplash.com/photo-1700284290242-855332aa31e6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   }))
 
-export const Categories = forwardRef((_, ref) => (
-  <Box ref={ref} as="article" pt={4} pb="1" flexGrow={1} overflow="auto">
-    <SimpleGrid
-      minChildWidth={{ base: 'none', md: 250 }}
-      columnGap={5}
-      rowGap={10}
-      justifyItems="center"
-      columns={1}
-      pr={{
-        base: 3,
-        lg: 0,
-      }}
-    >
-      <Hide above="md">
-        <Search />
-      </Hide>
-      {categories.map((props) => (
-        <CategoryCard {...props} key={props.id} />
-      ))}
-    </SimpleGrid>
-  </Box>
-))
+export const Categories = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollY } = useScroll({ container: ref })
+
+  const handleClick = () => {
+    ref.current?.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  return (
+    <>
+      <TopButton scrollY={scrollY} handleClick={handleClick} />
+      <Box ref={ref} as="article" pt={4} pb="1" flexGrow={1} overflow="auto">
+        <SimpleGrid
+          minChildWidth={{ base: 'none', md: 250 }}
+          columnGap={5}
+          rowGap={10}
+          justifyItems="center"
+          columns={1}
+          pr={{
+            base: 3,
+            lg: 0,
+          }}
+        >
+          <Hide above="md">
+            <Search />
+          </Hide>
+          {categories.map((props) => (
+            <CategoryCard {...props} key={props.name} />
+          ))}
+        </SimpleGrid>
+      </Box>
+    </>
+  )
+}

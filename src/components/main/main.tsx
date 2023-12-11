@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Grid } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 export interface MainProps {
@@ -6,8 +6,9 @@ export interface MainProps {
 }
 
 export const Main = ({ children }: MainProps) => (
-  <Flex
+  <Grid
     as="main"
+    templateColumns="auto 1fr"
     h="calc(100% - 48px)"
     w="full"
     maxW={{
@@ -17,8 +18,8 @@ export const Main = ({ children }: MainProps) => (
     mx="auto"
     pt={2}
     gap={4}
-    justifyContent="space-between"
+    // justifyContent="space-between"
   >
     {children}
-  </Flex>
+  </Grid>
 )

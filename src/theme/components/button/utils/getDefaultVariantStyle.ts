@@ -6,10 +6,10 @@ export const getDefaultVariantStyle: GetDefaultVariantStyle = (
   props,
   buttonVariant
 ) => {
-  const defaultVariantStyle = theme.components.Button.variants![buttonVariant]
+  const chakraVariantStyle = theme.components.Button.variants![buttonVariant]
 
   return {
-    ...defaultVariantStyle(props),
+    ...chakraVariantStyle(props),
     ...getNewDefaultButtonVariantStyleFunction(buttonVariant)(props),
   }
 }
