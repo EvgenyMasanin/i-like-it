@@ -17,7 +17,13 @@ module.exports = {
     'import/resolver': {
       alias: {
         extensions: ['.ts', '.tsx'],
-        map: [['src', './src']],
+        map: [
+          ['@sheared', './src/sheared'],
+          ['@entities', './src/entities'],
+          ['@features', './src/features'],
+          ['@widgets', './src/widgets'],
+          ['@pages', './src/pages'],
+        ],
       },
     },
   },

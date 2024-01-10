@@ -1,12 +1,4 @@
 import ReactDOM from 'react-dom/client'
-import { AppRouter } from './router'
-import { StoreProvider } from './redux-store/store-provider'
-import { AppChakraProvider } from './theme/app-chakra-provider'
+import { App } from './app'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <StoreProvider>
-    <AppChakraProvider>
-      <AppRouter />
-    </AppChakraProvider>
-  </StoreProvider>
-)
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
