@@ -1,7 +1,9 @@
-import { BoxProps, CloseButton, Flex, Stack } from '@chakra-ui/react'
 import { Logo } from '@entities/logo/ui'
-import { useAlternativeBgColor } from '@sheared/theme'
+import { useAlternativeBgColor } from '@shared/theme'
+import { BoxProps, CloseButton, Flex, Stack } from '@chakra-ui/react'
+
 import { IconType } from 'react-icons'
+
 import { NavItems } from './nav-items'
 
 export interface LinkItemProps {

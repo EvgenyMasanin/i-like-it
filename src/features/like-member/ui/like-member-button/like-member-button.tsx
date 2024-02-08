@@ -14,8 +14,6 @@ export const LikeMemberButton = ({ memberId, ...props }: LikeMemberButtonProps) 
   const { isOpen, onOpen } = useDisclosure()
 
   const [like, setLike] = useState(false)
-  console.log('🚀 ~ LikeMemberButton ~ isOpen:', isOpen)
-  console.log('🚀 ~ LikeMemberButton ~ memberId:', memberId)
 
   const handleClick = () => {
     onOpen()

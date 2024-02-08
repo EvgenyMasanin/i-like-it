@@ -1,6 +1,7 @@
+import { store } from '@shared/redux-store'
+
 import { ReactNode } from 'react'
 import { Provider } from 'react-redux'
-import { store } from '@sheared/redux-store'
 
 interface StoreProviderProps {
   children: ReactNode

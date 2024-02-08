@@ -1,13 +1,14 @@
 import {
   Box,
   Stack,
-  UseRadioProps,
   useColorModeValue,
   useRadio,
   useRadioGroup,
+  UseRadioProps,
 } from '@chakra-ui/react'
-import { adminUser, commonUser, mockTokens } from '@sheared/mock/user.mock'
-import { useActions } from '@sheared/redux-store/hooks'
+import { useActions } from '@shared/redux-store/hooks'
+import { adminUser, commonUser, mockTokens } from '@shared/mock/user.mock'
+
 import { ReactNode } from 'react'
 
 export const UserSelector = () => {

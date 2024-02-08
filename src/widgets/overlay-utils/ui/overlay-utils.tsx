@@ -1,9 +1,10 @@
 import { Button, Stack, useDisclosure } from '@chakra-ui/react'
+
 import { BpShower } from './bp-shower'
 import { UserSelector } from './user-selector'
 
 export const OverlayUtils = () => {
-  const { isOpen, onToggle } = useDisclosure({})
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
 
   const text = isOpen ? 'hide' : 'show'
 

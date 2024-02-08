@@ -1,6 +1,3 @@
-import { BsPerson } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-
 import {
   Avatar,
   Button,
@@ -13,11 +10,14 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react'
+import { Path } from '@shared/paths'
+import { useTextColor } from '@shared/theme'
+import { useTypedSelector } from '@shared/redux-store/hooks'
 import { ThemeSwitcher } from '@features/theme-switcher/ui'
-import { Path } from '@sheared/paths'
-import { useTypedSelector } from '@sheared/redux-store/hooks'
-import { selectUser } from '@sheared/redux-store/slices/user.slice'
-import { useTextColor } from '@sheared/theme'
+import { selectUser } from '@shared/redux-store/slices/user.slice'
+
+import { BsPerson } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 export const AvatarMenu = () => {
   const { colorMode } = useColorMode()

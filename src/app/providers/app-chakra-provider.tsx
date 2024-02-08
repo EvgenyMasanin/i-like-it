@@ -1,5 +1,6 @@
+import { theme } from '@shared/theme'
 import { ChakraProvider } from '@chakra-ui/react'
-import { theme } from '@sheared/theme'
+
 import { ReactNode } from 'react'
 
 interface AppChakraProviderProps {

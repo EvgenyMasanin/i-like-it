@@ -1,9 +1,10 @@
-import { Center, Flex, Hide, IconButton, Stack, useColorModeValue } from '@chakra-ui/react'
-import { FiMenu } from 'react-icons/fi'
-import { useAlternativeBgColor, useAppHeight } from '@sheared/theme'
-import { AvatarMenu } from '@entities/user/ui/avatar-menu'
 import { Logo } from '@entities/logo/ui'
 import { Search } from '@features/search/ui'
+import { useAlternativeBgColor, useAppHeight } from '@shared/theme'
+import { AvatarMenu } from '@entities/user/ui/avatar-menu'
+import { Box, Center, Flex, Hide, IconButton, Spacer, useColorModeValue } from '@chakra-ui/react'
+
+import { FiMenu } from 'react-icons/fi'
 
 interface HeaderProps {
   menuButtonAction?: () => void
@@ -34,13 +35,14 @@ export const Header = ({ menuButtonAction }: HeaderProps) => {
           />
           <Logo mx="auto" minW={205} />
         </Flex>
+        <Spacer />
         <Hide below="md">
           <Search mx={10} w="full" maxW={600} bg={useColorModeValue('transparent', 'gray.800')} />
         </Hide>
-
-        <Stack direction="row" spacing={7}>
+        <Spacer />
+        <Box>
           <AvatarMenu />
-        </Stack>
+        </Box>
       </Flex>
     </Center>
   )

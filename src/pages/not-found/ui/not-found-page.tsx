@@ -1,7 +1,7 @@
-import { Link as ReactRouterLink } from 'react-router-dom'
-
+import { Path } from '@shared/paths'
 import { Divider, Link as ChakraLink, Stack, Text } from '@chakra-ui/react'
-import { Path } from '@sheared/paths'
+
+import { Link as ReactRouterLink } from 'react-router-dom'
 
 export const NotFoundPage = () => (
   <Stack px={20} alignItems="center">

@@ -4,31 +4,23 @@
     "app": {
       "withProviders": true
     },
-    "entities": {
-      "withApi": true,
-      "withLib": true,
-      "withUi": true,
-      "withModel": true,
-      "withAssets": false,
-      "withConfig": false,
-      "withTypes": true
-    },
-    "features": {
-      "withApi": false,
-      "withLib": true,
-      "withUi": true,
-      "withModel": false,
-      "withAssets": false,
-      "withConfig": false,
-      "withTypes": true
-    },
     "pages": {
-      "withLib": false,
       "withUi": true
     },
     "widgets": {
+      "withUi": true,
+      "withLib": true
+    },
+    "features": {
+      "withUi": true,
       "withLib": true,
-      "withUi": true
+      "withModel": true
+    },
+    "entities": {
+      "withUi": true,
+      "withLib": true,
+      "withApi": true,
+      "withModel": true
     }
   }
 }

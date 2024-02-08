@@ -1,9 +1,9 @@
-import { BsChatHeartFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-
+import { Path } from '@shared/paths'
+import { useTextColor } from '@shared/theme'
 import { Box, Flex, FlexProps, Text } from '@chakra-ui/react'
-import { Path } from '@sheared/paths'
-import { useTextColor } from '@sheared/theme'
+
+import { Link } from 'react-router-dom'
+import { BsChatHeartFill } from 'react-icons/bs'
 
 export interface LogoProps extends FlexProps {}
 

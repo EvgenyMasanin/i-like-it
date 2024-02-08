@@ -1,6 +1,7 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { adminUser } from '@shared/mock/user.mock'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Tokens, User } from '@entities/user/types/user.types'
-import { adminUser } from '@sheared/mock/user.mock'
+
 import { RootState } from '..'
 
 export interface UserState {

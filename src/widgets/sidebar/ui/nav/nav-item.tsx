@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { CustomColors } from '@shared/theme/colors'
+import { useHoverColor as useHoverColors } from '@shared/theme'
+import { Box, Flex, FlexProps, Icon, Text, useColorModeValue } from '@chakra-ui/react'
+
 import { IconType } from 'react-icons'
 import { Link } from 'react-router-dom'
-
-import { Box, Flex, FlexProps, Icon, Text, useColorModeValue } from '@chakra-ui/react'
-import { useHoverColor as useHoverColors } from '@sheared/theme'
-import { CustomColors } from '@sheared/theme/colors'
 
 export interface NavItemProps extends FlexProps {
   icon: IconType

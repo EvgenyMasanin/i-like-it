@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { Category } from '@entities/category/types/category.type'
+
 import { imitateFetch } from './utils/imitateFetch'
 
 const categories: Array<Category> = Array(130)

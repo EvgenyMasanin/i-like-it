@@ -1,8 +1,8 @@
-import { LoaderFunctionArgs, RouteObject } from 'react-router-dom'
+import { Path } from '@shared/paths/paths'
+import { getCategory } from '@shared/mock/get-category.mock'
+import { getCategories } from '@shared/mock/get-categories.mock'
 
-import { getCategories } from '@sheared/mock/get-categories.mock'
-import { getCategory } from '@sheared/mock/get-category.mock'
-import { Path } from '@sheared/paths/paths'
+import { LoaderFunctionArgs, RouteObject } from 'react-router-dom'
 
 import {
   Categories,

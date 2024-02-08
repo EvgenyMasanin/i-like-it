@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 /* eslint-disable no-empty-pattern */
 import {
   AspectRatio,
@@ -16,10 +14,12 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { Path, root } from '@shared/paths'
+import { LikeMemberButton } from '@features/like-member/ui'
 import { Characteristic } from '@entities/characteristic/ui'
 import { Member } from '@entities/member/types/member.type'
-import { LikeMemberButton } from '@features/like-member/ui'
-import { Path, root } from '@sheared/paths'
+
+import { Link } from 'react-router-dom'
 
 export interface MemberCardProps {}
 
@@ -43,7 +43,7 @@ const member: Member = {
 }
 
 export const MemberCard = ({}: MemberCardProps) => (
-  <Card maxW="sm" w={72}>
+  <Card maxW={{ base: 'min-content', sm: 'max-content' }}>
     <CardBody>
       <AspectRatio ratio={4 / 3}>
         <Image src={member.imgSrc} alt={member.name} borderRadius="lg" />

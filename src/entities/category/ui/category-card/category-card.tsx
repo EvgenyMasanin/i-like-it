@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-
+import { Path } from '@shared/paths'
 import { AspectRatio, Box, Flex, Image, Text } from '@chakra-ui/react'
-import { Path } from '@sheared/paths'
+
+import { Link } from 'react-router-dom'
 
 export interface CategoryCardProps {
   id: number
@@ -22,14 +22,18 @@ export const CategoryCard = ({ id, imgSrc: imgCrs, name }: CategoryCardProps) =>
     <AspectRatio w="full" ratio={4 / 3}>
       <Image src={imgCrs} rounded="lg" />
     </AspectRatio>
-    <Box
-      bgGradient="linear(transparent,transparent, blackAlpha.700)"
-      position="absolute"
-      rounded="lg"
-      inset={0}
-    />
+    <Shadow />
     <Text fontSize="2xl" position="absolute" bottom="5%" fontWeight="bold" color="white">
       {name}
     </Text>
   </Flex>
+)
+
+const Shadow = () => (
+  <Box
+    bgGradient="linear(transparent,transparent, blackAlpha.700)"
+    position="absolute"
+    rounded="lg"
+    inset={0}
+  />
 )

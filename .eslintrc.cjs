@@ -18,7 +18,7 @@ module.exports = {
       alias: {
         extensions: ['.ts', '.tsx'],
         map: [
-          ['@sheared', './src/sheared'],
+          ['@shared', './src/shared'],
           ['@entities', './src/entities'],
           ['@features', './src/features'],
           ['@widgets', './src/widgets'],

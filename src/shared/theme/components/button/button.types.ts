@@ -1,6 +1,7 @@
+import { ButtonVariants } from '@shared/theme'
 import { StyleFunctionProps } from '@chakra-ui/react'
-import { ButtonVariants } from '@sheared/theme'
-import { CustomColors } from '@sheared/theme/colors'
+import { CustomColors } from '@shared/theme/colors'
+
 import { ButtonDefaultStyle } from './button'
 import { ComponentThemeType } from '../types'
 

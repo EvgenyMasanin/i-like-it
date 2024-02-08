@@ -1,4 +1,4 @@
-import { useTypedLoaderData } from '@sheared/hooks/react-router-dom'
+import { useTypedLoaderData } from '@shared/hooks/react-router-dom'
 
 export interface ProfileProps {}
 

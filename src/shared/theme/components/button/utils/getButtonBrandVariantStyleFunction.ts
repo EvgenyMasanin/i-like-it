@@ -1,6 +1,7 @@
-import { brandHoverBg } from '@sheared/theme/colors'
-import { BrandVariants, GetButtonBrandVariantStyleFunction } from '../button.types'
+import { brandHoverBg } from '@shared/theme/colors'
+
 import { getDefaultVariantStyle } from './getDefaultVariantStyle'
+import { BrandVariants, GetButtonBrandVariantStyleFunction } from '../button.types'
 
 export const getButtonBrandVariantStyleFunction: GetButtonBrandVariantStyleFunction =
   (buttonVariant) => (props) => {

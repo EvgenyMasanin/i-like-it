@@ -1,7 +1,7 @@
-import { FiCompass, FiHeart, FiPhone, FiTable, FiTrendingUp } from 'react-icons/fi'
-
+import { Path } from '@shared/paths'
 import { Drawer, DrawerContent, Flex } from '@chakra-ui/react'
-import { Path } from '@sheared/paths'
+
+import { FiCompass, FiHeart, FiPhone, FiTable, FiTrendingUp } from 'react-icons/fi'
 
 import { LinkItemProps, Nav } from './nav'
 

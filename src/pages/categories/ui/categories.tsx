@@ -1,13 +1,13 @@
+import { CardsGrid } from '@shared/ui'
+import { Path } from '@shared/paths'
+import { Search } from '@features/search/ui'
+import { Hide, Spinner } from '@chakra-ui/react'
+import { CategoryCard } from '@entities/category/ui/category-card'
+import { Category } from '@entities/category/types/category.type'
+import { useLoading, useTypedLoaderData } from '@shared/hooks/react-router-dom'
+
 /* eslint-disable no-nested-ternary */
 import { Outlet, useLocation } from 'react-router-dom'
-
-import { Hide, Spinner } from '@chakra-ui/react'
-import { Category } from '@entities/category/types/category.type'
-import { CategoryCard } from '@entities/category/ui/category-card'
-import { Search } from '@features/search/ui'
-import { useLoading, useTypedLoaderData } from '@sheared/hooks/react-router-dom'
-import { Path } from '@sheared/paths'
-import { CardsGrid } from '@sheared/ui'
 
 export const Categories = () => {
   const { pathname } = useLocation()

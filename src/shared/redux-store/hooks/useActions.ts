@@ -5,7 +5,8 @@ import {
   setCredentials,
   setIsTokenExpired,
   setRefreshToken,
-} from '@sheared/redux-store/slices/user.slice'
+} from '@shared/redux-store/slices/user.slice'
+
 import { useTypedDispatch } from '.'
 
 const AllActions = {

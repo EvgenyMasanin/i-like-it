@@ -1,13 +1,13 @@
+import { defineConfig } from 'vite'
 /* eslint-disable import/no-extraneous-dependencies */
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@sheared': '/src/sheared',
+      '@shared': '/src/shared',
       '@entities': '/src/entities',
       '@features': '/src/features',
       '@widgets': '/src/widgets',
