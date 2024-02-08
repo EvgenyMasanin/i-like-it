@@ -1,3 +1,1 @@
-export interface RecommendedProps {}
-
-export const RecommendedPage = ({}: RecommendedProps) => <div>Recommended</div>
+export const RecommendedPage = () => <div>Recommended</div>

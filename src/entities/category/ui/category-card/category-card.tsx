@@ -1,5 +1,6 @@
-import { Path } from '@shared/paths'
 import { AspectRatio, Box, Flex, Image, Text } from '@chakra-ui/react'
+
+import { Path } from '~/shared/paths'
 
 import { Link } from 'react-router-dom'
 

@@ -1,8 +1,6 @@
-import { useTypedLoaderData } from '@shared/hooks/react-router-dom'
+import { useTypedLoaderData } from '~/shared/hooks/react-router-dom'
 
-export interface ProfileProps {}
-
-export const ProfilePage = ({}: ProfileProps) => {
+export const ProfilePage = () => {
   const { id } = useTypedLoaderData<{ id: number }>()
   return <div>Profile id: {id}</div>
 }

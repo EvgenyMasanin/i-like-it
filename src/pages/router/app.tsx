@@ -1,9 +1,10 @@
-import { Main } from '@widgets/main/ui'
-import { Header } from '@widgets/header/ui'
-import { Sidebar } from '@widgets/sidebar/ui'
-import { BreakPoints, useTypedBreakpoint } from '@shared/theme'
 import { Flex, Spinner, useDisclosure } from '@chakra-ui/react'
-import { OverlayUtils } from '@widgets/overlay-utils/ui'
+
+import { Main } from '~/widgets/main/ui'
+import { Header } from '~/widgets/header/ui'
+import { Sidebar } from '~/widgets/sidebar/ui'
+import { OverlayUtils } from '~/widgets/devtools/ui'
+import { BreakPoints, useTypedBreakpoint } from '~/shared/theme'
 
 import { useState } from 'react'
 import { Outlet, useNavigation } from 'react-router-dom'

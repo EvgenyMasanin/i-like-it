@@ -1,6 +1,7 @@
-import { Path } from '@shared/paths'
-import { useTextColor } from '@shared/theme'
 import { Box, Flex, FlexProps, Text } from '@chakra-ui/react'
+
+import { Path } from '~/shared/paths'
+import { useTextColor } from '~/shared/theme'
 
 import { Link } from 'react-router-dom'
 import { BsChatHeartFill } from 'react-icons/bs'

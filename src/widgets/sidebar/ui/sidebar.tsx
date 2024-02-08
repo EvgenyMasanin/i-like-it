@@ -1,5 +1,6 @@
-import { Path } from '@shared/paths'
 import { Drawer, DrawerContent, Flex } from '@chakra-ui/react'
+
+import { Path } from '~/shared/paths'
 
 import { FiCompass, FiHeart, FiPhone, FiTable, FiTrendingUp } from 'react-icons/fi'
 

@@ -1,8 +1,19 @@
-import { Logo } from '@entities/logo/ui'
-import { Search } from '@features/search/ui'
-import { useAlternativeBgColor, useAppHeight } from '@shared/theme'
-import { AvatarMenu } from '@entities/user/ui/avatar-menu'
-import { Box, Center, Flex, Hide, IconButton, Spacer, useColorModeValue } from '@chakra-ui/react'
+import {
+  Box,
+  Center,
+  Flex,
+  Hide,
+  IconButton,
+  Spacer,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react'
+
+import { Logo } from '~/entities/logo/ui'
+import { Search } from '~/features/search/ui'
+import { useAlternativeBgColor, useAppHeight } from '~/shared/theme'
+import { ThemeSwitcher } from '~/features/theme-switcher/ui'
+import { AvatarMenu } from '~/entities/user/ui/avatar-menu'
 
 import { FiMenu } from 'react-icons/fi'
 
@@ -12,6 +23,8 @@ interface HeaderProps {
 
 export const Header = ({ menuButtonAction }: HeaderProps) => {
   const { headerHeight } = useAppHeight()
+  const { colorMode } = useColorMode()
+
   return (
     <Center bg={useAlternativeBgColor()} pl={{ base: 1, lg: 0 }} pr={{ base: 3, lg: 0 }}>
       <Flex
@@ -41,7 +54,9 @@ export const Header = ({ menuButtonAction }: HeaderProps) => {
         </Hide>
         <Spacer />
         <Box>
-          <AvatarMenu />
+          <AvatarMenu
+            themeSwitcher={<ThemeSwitcher variant="link" text={colorMode.toUpperCase()} />}
+          />
         </Box>
       </Flex>
     </Center>

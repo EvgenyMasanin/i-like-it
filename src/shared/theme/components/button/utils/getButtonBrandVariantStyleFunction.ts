@@ -1,4 +1,4 @@
-import { brandHoverBg } from '@shared/theme/colors'
+import { brandHoverBg } from '~/shared/theme/colors'
 
 import { getDefaultVariantStyle } from './getDefaultVariantStyle'
 import { BrandVariants, GetButtonBrandVariantStyleFunction } from '../button.types'

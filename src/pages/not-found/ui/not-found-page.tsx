@@ -1,5 +1,6 @@
-import { Path } from '@shared/paths'
 import { Divider, Link as ChakraLink, Stack, Text } from '@chakra-ui/react'
+
+import { Path } from '~/shared/paths'
 
 import { Link as ReactRouterLink } from 'react-router-dom'
 

@@ -1,5 +1,6 @@
-import { RecursivePartial } from '@shared/types/utils'
 import { StyleFunctionProps, theme } from '@chakra-ui/react'
+
+import { RecursivePartial } from '~/shared/types/utils'
 
 import { isCustomColorScheme } from './input.types'
 import { brandColorModeShade, colors } from '../../colors'

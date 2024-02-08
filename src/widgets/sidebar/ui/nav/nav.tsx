@@ -1,6 +1,7 @@
-import { Logo } from '@entities/logo/ui'
-import { useAlternativeBgColor } from '@shared/theme'
 import { BoxProps, CloseButton, Flex, Stack } from '@chakra-ui/react'
+
+import { Logo } from '~/entities/logo/ui'
+import { useAlternativeBgColor } from '~/shared/theme'
 
 import { IconType } from 'react-icons'
 

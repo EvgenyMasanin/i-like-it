@@ -1,3 +1,1 @@
-export interface SuggestCategoryProps {}
-
-export const SuggestCategoryPage = ({}: SuggestCategoryProps) => <div>SuggestCategory</div>
+export const SuggestCategoryPage = () => <div>SuggestCategory</div>

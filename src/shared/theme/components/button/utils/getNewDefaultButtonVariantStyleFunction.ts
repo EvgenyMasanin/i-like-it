@@ -1,5 +1,6 @@
 import { theme } from '@chakra-ui/react'
-import { BrandColorTheme } from '@shared/theme/colors'
+
+import { BrandColorTheme } from '~/shared/theme/colors'
 
 import { GetNewDefaultButtonVariantStyleFunction, variantColor } from '../button.types'
 

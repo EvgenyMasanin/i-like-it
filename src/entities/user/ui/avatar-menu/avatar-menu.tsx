@@ -8,19 +8,22 @@ import {
   MenuItem,
   MenuList,
   Text,
-  useColorMode,
 } from '@chakra-ui/react'
-import { Path } from '@shared/paths'
-import { useTextColor } from '@shared/theme'
-import { useTypedSelector } from '@shared/redux-store/hooks'
-import { ThemeSwitcher } from '@features/theme-switcher/ui'
-import { selectUser } from '@shared/redux-store/slices/user.slice'
 
+import { Path } from '~/shared/paths'
+import { useTextColor } from '~/shared/theme'
+import { useTypedSelector } from '~/shared/redux'
+import { selectUser } from '~/entities/user/model/slices'
+
+import { ReactNode } from 'react'
 import { BsPerson } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
-export const AvatarMenu = () => {
-  const { colorMode } = useColorMode()
+export interface AvatarMenuProps {
+  themeSwitcher: ReactNode
+}
+
+export const AvatarMenu = ({ themeSwitcher }: AvatarMenuProps) => {
   const user = useTypedSelector(selectUser)
 
   const displayUserName = user ? user.name : 'guest'
@@ -60,7 +63,7 @@ export const AvatarMenu = () => {
         <MenuItem gap={2}>
           <Text>Theme:</Text>
           {/* //FIXME: ThemeSwitcher to context menu */}
-          <ThemeSwitcher variant="link" text={colorMode.toUpperCase()} />
+          {themeSwitcher}
         </MenuItem>
         <MenuItem as={Link} to={Path.profile}>
           Profile

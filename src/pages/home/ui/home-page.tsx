@@ -1,5 +1,6 @@
 import { Center, Text } from '@chakra-ui/react'
-import { Logo } from '@entities/logo/ui'
+
+import { Logo } from '~/entities/logo/ui'
 
 export const HomePage = () => (
   <Center>

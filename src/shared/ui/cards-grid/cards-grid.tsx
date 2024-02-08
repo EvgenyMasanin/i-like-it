@@ -1,8 +1,9 @@
 import { useScroll } from 'framer-motion'
+import { Box, SimpleGrid } from '@chakra-ui/react'
+
 import { PropsWithChildren, useRef } from 'react'
 
-import { Box, SimpleGrid } from '@chakra-ui/react'
-import { TopButton } from '@widgets/top-button/ui'
+import { TopButton } from '../top-button/ui'
 
 export interface CardsGridProps extends PropsWithChildren {}
 

@@ -1,3 +1,1 @@
-export interface FavoritesProps {}
-
-export const FavoritesPage = ({}: FavoritesProps) => <div>Favorites</div>
+export const FavoritesPage = () => <div>Favorites</div>

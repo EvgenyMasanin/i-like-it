@@ -3,6 +3,8 @@ module.exports = {
   env: { browser: true, es2020: true },
   extends: [
     'plugin:import/errors',
+    '@feature-sliced/eslint-config/rules/import-order/experimental',
+    '@feature-sliced',
     'airbnb',
     'airbnb/hooks',
     'eslint:recommended',
@@ -12,17 +14,22 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', '@feature-sliced/eslint-plugin-messages'],
+  processor: '@feature-sliced/messages/fs',
   settings: {
     'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
       alias: {
         extensions: ['.ts', '.tsx'],
         map: [
-          ['@shared', './src/shared'],
-          ['@entities', './src/entities'],
-          ['@features', './src/features'],
-          ['@widgets', './src/widgets'],
-          ['@pages', './src/pages'],
+          ['~/app', './src/app'],
+          ['~/shared', './src/shared'],
+          ['~/entities', './src/entities'],
+          ['~/features', './src/features'],
+          ['~/widgets', './src/widgets'],
+          ['~/pages', './src/pages'],
         ],
       },
     },

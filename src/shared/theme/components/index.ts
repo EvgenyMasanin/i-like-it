@@ -1,5 +1,6 @@
 import { theme } from '@chakra-ui/react'
-import { RecursivePartial } from '@shared/types/utils'
+
+import { RecursivePartial } from '~/shared/types/utils'
 
 import { inputTheme } from './input/input'
 import { buttonTheme } from './button/button'

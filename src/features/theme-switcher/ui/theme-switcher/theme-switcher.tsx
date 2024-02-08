@@ -1,6 +1,7 @@
-import { Variants } from '@shared/theme'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { Button, ButtonProps, IconButton, useColorMode } from '@chakra-ui/react'
+
+import { Variants } from '~/shared/theme'
 
 interface ThemeSwitcherProps {
   text?: string

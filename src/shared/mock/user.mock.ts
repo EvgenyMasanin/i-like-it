@@ -1,4 +1,5 @@
-import { Tokens, User } from '@entities/user/types/user.types'
+/* eslint-disable boundaries/element-types */
+import { Tokens, User } from '~/entities/user/model/types/user.types'
 
 export const adminUser: User = {
   id: 65418,

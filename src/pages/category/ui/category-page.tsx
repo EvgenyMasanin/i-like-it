@@ -1,14 +1,14 @@
-import { MemberCard } from '@entities/member/ui'
 import { Box, SimpleGrid, Text } from '@chakra-ui/react'
-import { Category } from '@entities/category/types/category.type'
-import { useTypedLoaderData } from '@shared/hooks/react-router-dom/use-typed-loader-data'
+
+import { MemberCard } from '~/entities/member/ui'
+import { Category } from '~/entities/category/types/category.type'
+import { useTypedLoaderData } from '~/shared/hooks/react-router-dom/use-typed-loader-data'
 
 export interface CategoryProps {}
 
 export const CategoryPage = () => {
   const { id, name } = useTypedLoaderData<Category>()
 
-  console.log('🚀 ~ Category ~ data:')
   return (
     <Box>
       <Text fontSize="4xl">

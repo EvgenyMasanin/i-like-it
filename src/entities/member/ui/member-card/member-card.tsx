@@ -14,12 +14,14 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { Path, root } from '@shared/paths'
-import { LikeMemberButton } from '@features/like-member/ui'
-import { Characteristic } from '@entities/characteristic/ui'
-import { Member } from '@entities/member/types/member.type'
+
+import { Path, root } from '~/shared/paths'
+import { Member } from '~/entities/member/model/types/member.type'
 
 import { Link } from 'react-router-dom'
+
+import { Characteristic } from '../characteristic'
+import { LikeMemberButton } from '../like-member/ui'
 
 export interface MemberCardProps {}
 
