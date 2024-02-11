@@ -4,13 +4,13 @@ import { Button, ButtonProps, IconButton, useColorMode } from '@chakra-ui/react'
 import { Variants } from '~/shared/theme'
 
 interface ThemeSwitcherProps {
-  text?: string
   variant?: Variants
   withIcon?: boolean
+  onlyIcon?: boolean
 }
 
 export const ThemeSwitcher = (props: ThemeSwitcherProps & ButtonProps) => {
-  const { text, variant, withIcon, ...buttonProps } = props
+  const { onlyIcon = false, variant, withIcon, ...buttonProps } = props
 
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -18,12 +18,7 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps & ButtonProps) => {
 
   const Icon = colorMode === 'light' ? MoonIcon : SunIcon
 
-  return text ? (
-    <Button as="a" gap={2} variant={variant} {...buttonProps} onClick={toggleColorMode}>
-      {text}
-      {showIcon && <Icon />}
-    </Button>
-  ) : (
+  return onlyIcon ? (
     <IconButton
       as={Button}
       rounded="full"
@@ -32,5 +27,10 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps & ButtonProps) => {
       icon={<Icon />}
       aria-label=""
     />
+  ) : (
+    <Button as="a" gap={2} variant={variant} {...buttonProps} onClick={toggleColorMode}>
+      {colorMode.toUpperCase()}
+      {showIcon && <Icon />}
+    </Button>
   )
 }

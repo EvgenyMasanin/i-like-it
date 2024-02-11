@@ -26,7 +26,9 @@ export interface AvatarMenuProps {
 export const AvatarMenu = ({ themeSwitcher }: AvatarMenuProps) => {
   const user = useTypedSelector(selectUser)
 
-  const displayUserName = user ? user.name : 'guest'
+  const displayUserName = user ? user.username : 'guest'
+
+  const avatarSrc = `${import.meta.env.VITE_API_URL}/${user?.avatarURL}`
 
   return (
     <Menu>
@@ -41,7 +43,7 @@ export const AvatarMenu = ({ themeSwitcher }: AvatarMenuProps) => {
             size="sm"
             backgroundColor="transparent"
             icon={<BsPerson fontSize="1.5rem" fill={useTextColor()} />}
-            src={user?.photo}
+            src={avatarSrc}
             aria-label=""
           />
         }
@@ -54,7 +56,7 @@ export const AvatarMenu = ({ themeSwitcher }: AvatarMenuProps) => {
       <MenuList alignItems="center">
         <br />
         <Center>
-          <Avatar size="2xl" icon={<BsPerson fontSize="1.5rem" />} src={user?.photo} />
+          <Avatar size="2xl" icon={<BsPerson fontSize="1.5rem" />} src={avatarSrc} />
         </Center>
         <Center>
           <Text fontSize="4xl">{displayUserName}</Text>

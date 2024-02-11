@@ -16,14 +16,14 @@ import { ReactNode } from 'react'
 
 export const UserSelector = () => {
   const users = [adminUser, commonUser, null]
-  const userNames = [`admin-${adminUser.name}`, `common-${commonUser.name}`, 'guest']
+  const userNames = [`admin-${adminUser.username}`, `common-${commonUser.username}`, 'guest']
 
   const dispatch = useTypedDispatch()
 
   const setCredentials1 = bindActionCreators(setCredentials, dispatch)
 
   const selectCurrentUser = (val: string) => {
-    setCredentials1({ user: users[+val], tokens: { ...mockTokens, isTokenExpired: false } })
+    setCredentials1({ user: users[+val], tokens: mockTokens })
   }
 
   const { getRootProps, getRadioProps } = useRadioGroup({

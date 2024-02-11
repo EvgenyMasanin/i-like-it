@@ -4,15 +4,15 @@ import { CardsGrid } from '~/shared/ui'
 import { Path } from '~/shared/paths'
 import { Search } from '~/features/search/ui'
 import { CategoryCard } from '~/entities/category/ui/category-card'
-import { Category } from '~/entities/category/types/category.type'
 import { useLoading, useTypedLoaderData } from '~/shared/hooks/react-router-dom'
+import { CategoryDto } from '~/entities/category/model/types/category.interface'
 
 import { Outlet, useLocation } from 'react-router-dom'
 
 export const Categories = () => {
   const { pathname } = useLocation()
 
-  const categories = useTypedLoaderData<Category[]>()
+  const categories = useTypedLoaderData<CategoryDto[]>()
 
   const isLoading = useLoading()
   if (isLoading) return <Spinner />

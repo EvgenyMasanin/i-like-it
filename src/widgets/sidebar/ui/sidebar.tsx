@@ -1,54 +1,46 @@
-import { Drawer, DrawerContent, Flex } from '@chakra-ui/react'
+import { CloseButton, Drawer, DrawerContent, Flex } from '@chakra-ui/react'
 
-import { Path } from '~/shared/paths'
+import { Logo } from '~/entities/logo/ui'
+import { useAlternativeBgColor } from '~/shared/theme'
+import { selectIsSidebarDrawerOpen, useSidebarActions } from '~/shared/redux/slices/sidebar.slice'
 
-import { FiCompass, FiHeart, FiPhone, FiTable, FiTrendingUp } from 'react-icons/fi'
+import { useSelector } from 'react-redux'
 
-import { LinkItemProps, Nav } from './nav'
+import { Nav } from './nav'
+import { linkItems } from './nav/link-items'
 
-interface SidebarWithHeaderProps {
-  // onOpen: () => void
-  onClose: () => void
-  isOpen: boolean
-  collapsed?: boolean
+interface SidebarWithHeaderProps {}
+
+export const Sidebar = ({}: SidebarWithHeaderProps) => {
+  const isDrawerOpen = useSelector(selectIsSidebarDrawerOpen)
+  const { toggleDrawer } = useSidebarActions()
+
+  return (
+    <Flex as="nav">
+      <Nav linkItems={linkItems} display={{ base: 'none', md: 'flex' }} />
+      <Drawer
+        isOpen={isDrawerOpen}
+        placement="left"
+        onClose={() => toggleDrawer()}
+        returnFocusOnClose={false}
+        onOverlayClick={() => toggleDrawer()}
+        size="full"
+      >
+        <DrawerContent>
+          <Flex
+            h="20"
+            px="4"
+            mb="4"
+            alignItems="center"
+            bg={useAlternativeBgColor()}
+            justifyContent="space-between"
+          >
+            <Logo />
+            <CloseButton onClick={() => toggleDrawer()} />
+          </Flex>
+          <Nav linkItems={linkItems} />
+        </DrawerContent>
+      </Drawer>
+    </Flex>
+  )
 }
-
-const linkItems: LinkItemProps[] = [
-  {
-    name: 'Recommended',
-    path: Path.recommended,
-    icon: FiTrendingUp,
-  },
-  { name: 'Categories', path: Path.categories, icon: FiTable },
-  { name: 'Suggest a category', path: Path.suggestCategory, icon: FiCompass },
-  { name: 'Favorites', path: Path.favorites, icon: FiHeart },
-  { name: 'Contact Us', path: Path.contactUs, icon: FiPhone },
-]
-export const Sidebar = ({ isOpen, onClose, collapsed }: SidebarWithHeaderProps) => (
-  <Flex as="nav">
-    <Nav
-      collapsed={collapsed}
-      linkItems={linkItems}
-      onClose={() => onClose}
-      display={{ base: 'none', md: 'flex' }}
-    />
-    <Drawer
-      isOpen={isOpen}
-      placement="left"
-      onClose={onClose}
-      returnFocusOnClose={false}
-      onOverlayClick={onClose}
-      size="full"
-    >
-      <DrawerContent>
-        <Nav onClose={onClose} linkItems={linkItems} />
-      </DrawerContent>
-    </Drawer>
-  </Flex>
-)
-
-// export interface SideBarProps {}
-
-// export const SideBar = ({}: SideBarProps) => {
-//   return <div>SideBar</div>
-// }

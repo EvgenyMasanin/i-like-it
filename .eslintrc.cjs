@@ -39,6 +39,8 @@ module.exports = {
     'linebreak-style': 'off',
     'import/prefer-default-export': 'off',
     semi: 'off',
+    'no-empty': 'off',
+    'no-empty-pattern': 'off',
     'import/extensions': 'off',
     'react/function-component-definition': 'off',
     'react/react-in-jsx-scope': 'off',

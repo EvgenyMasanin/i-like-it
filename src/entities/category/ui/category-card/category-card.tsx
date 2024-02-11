@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom'
 export interface CategoryCardProps {
   id: number
   name: string
-  imgSrc: string
+  imageUrl: string
 }
 
-export const CategoryCard = ({ id, imgSrc: imgCrs, name }: CategoryCardProps) => (
+export const CategoryCard = ({ id, imageUrl: imgCrs, name }: CategoryCardProps) => (
   <Flex
     key={id}
     w="full"

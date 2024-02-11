@@ -1,5 +1,6 @@
 export enum Path {
   root = '/',
+  auth = 'auth',
   home = 'home',
   profile = 'profile',
   favorites = 'favorites',

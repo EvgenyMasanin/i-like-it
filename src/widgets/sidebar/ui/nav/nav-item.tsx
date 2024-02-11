@@ -5,22 +5,25 @@ import { CustomColors } from '~/shared/theme/colors'
 import { useHoverColor as useHoverColors } from '~/shared/theme'
 
 import { IconType } from 'react-icons'
-import { Link } from 'react-router-dom'
+import { Link, useMatches } from 'react-router-dom'
 
 export interface NavItemProps extends FlexProps {
   icon: IconType
   children: React.ReactNode
   collapsed?: boolean
-  active?: boolean
   path: string
 }
 
-export const NavItem = ({ icon, children, collapsed, active, path, ...rest }: NavItemProps) => {
+export const NavItem = ({ icon, children, collapsed, path, ...rest }: NavItemProps) => {
   const colors = useHoverColors()
 
   const unActiveIconColor = useColorModeValue(CustomColors.lightBrand, 'white')
 
+  const [, { pathname }] = useMatches()
+  const active = pathname.includes(path)
+
   const iconColor = active ? 'white' : unActiveIconColor
+
   return (
     <Box as={Link} to={path} _focus={{ boxShadow: 'none' }}>
       <Flex

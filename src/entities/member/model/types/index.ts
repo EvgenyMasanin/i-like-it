@@ -1,2 +1,2 @@
-export * from './characteristic.type'
-export * from './member.type'
+export * from './characteristic.interface'
+export * from './member.interface'

@@ -18,10 +18,10 @@ export const CardsGrid = ({ children }: CardsGridProps) => {
   return (
     <>
       <TopButton scrollY={scrollY} handleClick={handleClick} />
-      <Box ref={ref} as="article" pt={4} pb="1" flexGrow={1} overflow="auto">
+      <Box ref={ref} as="article" pt={4} pb="1" flexGrow={1}>
         <SimpleGrid
           minChildWidth={{ base: 'none', md: 250 }}
-          columnGap={5}
+          columnGap={10}
           rowGap={10}
           justifyItems="center"
           columns={1}

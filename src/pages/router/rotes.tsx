@@ -5,6 +5,7 @@ import { getCategories } from '~/shared/mock/get-categories.mock'
 import { LoaderFunctionArgs, RouteObject } from 'react-router-dom'
 
 import {
+  AuthPage,
   Categories,
   CategoryPage,
   ContactUsPage,
@@ -15,7 +16,7 @@ import {
   RecommendedPage,
   SuggestCategoryPage,
 } from '..'
-import { App } from './app'
+import { Root } from './root'
 
 export const rootChildren: RouteObject[] = [
   {
@@ -65,8 +66,9 @@ export const rootChildren: RouteObject[] = [
 export const rotes: RouteObject[] = [
   {
     path: Path.root,
-    element: <App />,
+    element: <Root />,
     errorElement: <NotFoundPage />,
     children: rootChildren,
   },
+  { path: Path.auth, element: <AuthPage /> },
 ]
