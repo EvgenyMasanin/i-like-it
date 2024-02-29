@@ -1,24 +1,23 @@
 import { Center, Flex, Hide, Spacer } from '@chakra-ui/react'
 
+import { Logo } from '~/entities/logo'
 import { HeaderMenu, HeaderMenuProps } from '~/shared/ui'
 import { useAlternativeBgColor, useAppHeight } from '~/shared/theme'
 
 import { ReactNode } from 'react'
 
-interface HeaderProps extends HeaderMenuProps {
-  actionButton: ReactNode
-  logo: ReactNode
-  searchBar: ReactNode
+interface HeaderProps extends Partial<HeaderMenuProps> {
+  actionButton?: ReactNode
+  searchBar?: ReactNode
 }
 
 export const Header = ({
   actionButton,
   buttonAvatar,
-  logoutButton,
+  authButton,
   menuAvatar,
   themeSwitcher,
   username,
-  logo,
   searchBar,
 }: HeaderProps) => {
   const { headerHeight } = useAppHeight()
@@ -41,7 +40,7 @@ export const Header = ({
       >
         <Flex w={{ base: 'full', md: 'fit-content' }} alignItems="center">
           {actionButton}
-          {logo}
+          <Logo mx="auto" minW={205} />
         </Flex>
         <Spacer />
         <Hide below="md">{searchBar}</Hide>
@@ -50,7 +49,7 @@ export const Header = ({
           <HeaderMenu
             buttonAvatar={buttonAvatar}
             menuAvatar={menuAvatar}
-            logoutButton={logoutButton}
+            authButton={authButton}
             username={username}
             themeSwitcher={themeSwitcher}
           />

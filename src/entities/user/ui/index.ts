@@ -1,3 +1,5 @@
 export * from './avatar-menu'
 export * from './user-avatar'
 export * from './username'
+export * from './current-user-avatar'
+export * from './user-info'

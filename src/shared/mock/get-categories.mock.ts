@@ -18,4 +18,5 @@ const categories: Array<CategoryDto> = Array(130)
         : 'https://images.unsplash.com/photo-1700284290242-855332aa31e6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   }))
 
-export const getCategories = () => imitateFetch(categories, '', 199)
+// export const getCategories = () => imitateFetch(categories, '', 199)
+export const getCategories = () => categories

@@ -1,16 +1,14 @@
 import { Avatar, AvatarProps } from '@chakra-ui/react'
 
 import { getUrl } from '~/shared/lib'
-import { useTypedSelector } from '~/shared/redux'
 import { useBrandColor } from '~/shared/theme/hooks/useBrandColor'
 
-import { selectUser } from '../../model/slices'
+export interface UserAvatarProps extends AvatarProps {
+  avatarURL: string
+}
 
-export interface UserAvatarProps extends AvatarProps {}
-
-export const UserAvatar = (props: UserAvatarProps) => {
-  const user = useTypedSelector(selectUser)
-  const avatarSrc = user?.avatarURL ? getUrl(user.avatarURL) : ''
+export const UserAvatar = ({ avatarURL, ...props }: UserAvatarProps) => {
+  const avatarSrc = getUrl(avatarURL)
 
   return <Avatar backgroundColor={useBrandColor()} {...props} src={avatarSrc} />
 }

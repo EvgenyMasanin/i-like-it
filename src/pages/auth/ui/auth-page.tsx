@@ -1,5 +1,7 @@
-import { Stack, Text } from '@chakra-ui/react'
+import { Box, Text, VStack } from '@chakra-ui/react'
 
+import { Header } from '~/shared/ui'
+import { Main } from '~/widgets/main'
 import { AuthForm } from '~/features/auth'
 import { useAuth } from '~/features/auth/lib/hooks'
 
@@ -9,9 +11,15 @@ export const AuthPage = () => {
   useAuth()
 
   return (
-    <Stack spacing={2}>
-      <Text fontSize="5xl">AuthPage:</Text>
-      <AuthForm />
-    </Stack>
+    <>
+      <Header />
+      <Main placeContent="center">
+        <Box>Preview</Box>
+        <VStack spacing={2}>
+          <Text fontSize="5xl">AuthPage:</Text>
+          <AuthForm />
+        </VStack>
+      </Main>
+    </>
   )
 }

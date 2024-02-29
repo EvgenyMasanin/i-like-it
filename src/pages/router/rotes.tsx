@@ -1,8 +1,6 @@
 import { Path } from '~/shared/paths/paths'
-import { getCategory } from '~/shared/mock/get-category.mock'
-import { getCategories } from '~/shared/mock/get-categories.mock'
 
-import { LoaderFunctionArgs, RouteObject } from 'react-router-dom'
+import { RouteObject } from 'react-router-dom'
 
 import {
   AuthPage,
@@ -22,12 +20,11 @@ export const rootChildren: RouteObject[] = [
   {
     path: Path.categories,
     element: <Categories />,
-    loader: getCategories,
+
     children: [
       {
         path: `${Path.category}/:id`,
         element: <CategoryPage />,
-        loader: ({ params }: LoaderFunctionArgs<{ id: number }>) => getCategory(Number(params.id)),
       },
     ],
   },
@@ -70,5 +67,5 @@ export const rotes: RouteObject[] = [
     errorElement: <NotFoundPage />,
     children: rootChildren,
   },
-  { path: Path.auth, element: <AuthPage /> },
+  { path: `${Path.auth}/:action`, element: <AuthPage /> },
 ]

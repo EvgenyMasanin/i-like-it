@@ -1,42 +1,38 @@
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Error } from '~/shared/ui'
+import { UserInfo } from '~/entities/user/ui'
+import { CategoryMembers } from '~/widgets/category-members/ui'
+import { useRequiredParams } from '~/shared/hooks/react-router-dom'
+import { useFindOneCategoryQuery } from '~/entities/category/api/category.api'
 
-import { MemberCard } from '~/entities/member/ui'
-import { useFindAllMembersQuery } from '~/entities/member/api'
-import { CategoryDto } from '~/entities/category/model/types/category.interface'
-import { useTypedLoaderData } from '~/shared/hooks/react-router-dom/use-typed-loader-data'
+import { Compose } from './compose'
 
 export interface CategoryProps {}
 
 export const CategoryPage = () => {
-  const { id, name } = useTypedLoaderData<CategoryDto>()
+  const { id } = useRequiredParams<{ id: string }>()
 
-  const { data, error, isLoading } = useFindAllMembersQuery({ limit: 10, offset: 1 })
+  const { data: category, isLoading, isError, error } = useFindOneCategoryQuery(+id)
+
+  if (!isLoading && !category) return 'Category does not exist'
+
+  if (isError) return <Error error={error} />
+
+  const isLoaded = !isLoading && !!category
 
   return (
-    <Box>
-      <Text fontSize="4xl">
-        {name} {id}
-      </Text>
-      <SimpleGrid
-        minChildWidth={{ base: 'none', md: 300 }}
-        columnGap={5}
-        rowGap={10}
-        justifyItems="center"
-        columns={1}
-        pr={{
-          base: 3,
-          lg: 0,
-        }}
-      >
-        {isLoading
-          ? 'Loading...'
-          : data?.data.map((member) => <MemberCard key={member.id} {...member} />)}
-        {/* <MemberCard />
-        <MemberCard />
-        <MemberCard />
-        <MemberCard />
-        <MemberCard /> */}
-      </SimpleGrid>
-    </Box>
+    <Compose
+      isLoaded={isLoaded}
+      name={category?.name}
+      description={category?.description}
+      author={
+        <UserInfo
+          isLoaded={isLoaded}
+          avatarURL={category?.authorAvatarURL}
+          username={category?.authorName}
+          usernameStyles={{ fontSize: '3xl' }}
+        />
+      }
+      members={<CategoryMembers categoryId={category?.id} />}
+    />
   )
 }

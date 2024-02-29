@@ -6,7 +6,7 @@ export const imitateFetch = async (
   await Promise.all(
     Array(slowCount)
       .fill(0)
-      .map((_, i) => fetch(`https://jsonplaceholder.typicode.com/todos/${i+1}`))
+      .map((_, i) => fetch(`https://jsonplaceholder.typicode.com/todos/${i + 1}`))
   )
 
   return new Promise((resolve, reject) => {

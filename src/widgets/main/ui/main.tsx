@@ -1,12 +1,12 @@
-import { Grid } from '@chakra-ui/react'
+import { Grid, GridProps } from '@chakra-ui/react'
 
 import { ReactNode } from 'react'
 
-export interface MainProps {
+export interface MainProps extends GridProps {
   children: ReactNode
 }
 
-export const Main = ({ children }: MainProps) => (
+export const Main = ({ children, ...props }: MainProps) => (
   <Grid
     as="main"
     templateColumns="auto 1fr"
@@ -19,6 +19,7 @@ export const Main = ({ children }: MainProps) => (
     mx="auto"
     pt={2}
     gap={4}
+    {...props}
     // justifyContent="space-between"
   >
     {children}

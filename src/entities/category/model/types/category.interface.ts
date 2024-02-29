@@ -1,3 +1,5 @@
+import { PaginationParams } from '~/shared/types/pagination.interface'
+
 export interface CategoryDto {
   id: number
   name: string
@@ -8,8 +10,17 @@ export interface CategoryDto {
   authorName: string
 }
 // TODO: form-data
-export interface UpdateCategoryDto {
+
+export type CreateCategoryDto = {
+  name: string
+  description: string
+  categoryImage: any
+}
+
+export type UpdateCategoryDto = Partial<CreateCategoryDto>
+
+export interface CategoryFilterParams extends PaginationParams {
   name?: string
-  description?: string
-  categoryImage?: any
+  authorId?: number
+  categoryId?: number
 }

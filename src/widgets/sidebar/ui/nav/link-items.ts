@@ -11,6 +11,7 @@ export const linkItems: LinkItemProps[] = [
     icon: FiTrendingUp,
   },
   { name: 'Categories', path: Path.categories, icon: FiTable },
+  { name: 'My categories', path: Path.myCategories, icon: FiTable },
   { name: 'Suggest a category', path: Path.suggestCategory, icon: FiCompass },
   { name: 'Favorites', path: Path.favorites, icon: FiHeart },
   { name: 'Contact Us', path: Path.contactUs, icon: FiPhone },

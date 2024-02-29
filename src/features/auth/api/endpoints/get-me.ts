@@ -24,4 +24,4 @@ export const getMe = authApi.injectEndpoints({
   }),
   overrideExisting: false,
 })
-export const { useGetMeQuery } = getMe
+export const { useGetMeQuery, useLazyGetMeQuery } = getMe

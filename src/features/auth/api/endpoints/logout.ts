@@ -1,6 +1,7 @@
 import { logOut } from '~/entities/user/model/slices'
 import { getAuthorizationHeader } from '~/shared/lib/get-authorization-header'
 
+import { getMe } from '.'
 import { authApi } from '..'
 
 export const logout = authApi.injectEndpoints({
@@ -16,6 +17,8 @@ export const logout = authApi.injectEndpoints({
         if (meta?.response?.status === 205) {
           dispatch(logOut())
         }
+
+        getMe.endpoints.getMe.initiate(null)
       },
     }),
   }),

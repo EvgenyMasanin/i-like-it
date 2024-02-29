@@ -1,15 +1,24 @@
 import { Path } from '~/shared/paths'
-import { selectUser } from '~/entities/user/model/slices'
+import { useMount } from '~/shared/hooks'
+import { selectAuthState, selectUser } from '~/entities/user/model/slices'
 
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useMatches, useNavigate } from 'react-router-dom'
 
-import { useGetMeQuery } from '../../api/endpoints'
+import { useLazyGetMeQuery } from '../../api/endpoints'
 
-export const useAuth = () => {
-  const { isLoading, isSuccess, isError } = useGetMeQuery(null)
-  const user = useSelector(selectUser)
+export const useAuth = (init?: 'init') => {
+  const [getMe, { isLoading, isSuccess, isError }] = useLazyGetMeQuery()
+
+  useMount(() => {
+    if (init) {
+      getMe(null)
+    }
+  })
+
+  // const user = useSelector(selectUser)
+  const { user, isAuthorizeFailed } = useSelector(selectAuthState)
 
   const navigate = useNavigate()
   const [{ pathname }] = useMatches()
@@ -17,14 +26,10 @@ export const useAuth = () => {
   const isAuthPage = pathname.includes(Path.auth)
 
   useEffect(() => {
-    // if (!user && !isLoading && !isAuthPage) {
-    //   navigate(Path.auth)
-    // }
-
     if (user && !isLoading && isAuthPage) {
       navigate(Path.root)
     }
   }, [user, isLoading, isAuthPage, navigate])
 
-  return { isLoading, isSuccess, isError }
+  return { isAuth: !!user, isAuthorizeFailed, isLoading, isSuccess, isError }
 }

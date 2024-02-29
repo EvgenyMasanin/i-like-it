@@ -22,7 +22,7 @@ export const sidebarSlice = createSlice({
   },
   selectors: {
     selectIsSidebarDrawerOpen: (state) => state.isDrawerOpen,
-    selectIsSidebarCollapsed: (state) => state.isDrawerOpen,
+    selectIsSidebarCollapsed: (state) => state.isCollapsed,
     selectSidebarFlags: createSelector(
       [
         (state: SidebarSliceState) => state.isDrawerOpen,

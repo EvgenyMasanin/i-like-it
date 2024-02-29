@@ -21,7 +21,7 @@ export interface HeaderMenuProps {
   menuAvatar: ReactElement
   username: ReactNode
   themeSwitcher: ReactNode
-  logoutButton: ReactNode
+  authButton: ReactNode
 }
 
 export const HeaderMenu = ({
@@ -29,7 +29,7 @@ export const HeaderMenu = ({
   buttonAvatar,
   username,
   themeSwitcher,
-  logoutButton,
+  authButton,
 }: HeaderMenuProps) => (
   <Menu>
     <MenuButton
@@ -62,7 +62,7 @@ export const HeaderMenu = ({
       </MenuItem>
       <MenuItem>Account Settings</MenuItem>
       <Box ml={2} mt={2}>
-        {logoutButton}
+        {authButton}
       </Box>
     </MenuList>
   </Menu>

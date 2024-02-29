@@ -5,11 +5,13 @@ const categories = [
 
 export const getCategory = async (id?: number) => {
   const category = categories.find(({ id: categoryId }) => categoryId === id)
+  if (category) return category
+  return new Error(`There is no such category with id: ${id}.`)
 
-  return new Promise((resolve, reject) => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1').then(() => {
-      if (category) resolve(category)
-      reject(new Error(`There is no such category with id: ${id}.`))
-    })
-  })
+  // return new Promise((resolve, reject) => {
+  //   fetch('https://jsonplaceholder.typicode.com/todos/1').then(() => {
+  //     if (category) resolve(category)
+  //     reject(new Error(`There is no such category with id: ${id}.`))
+  //   })
+  // })
 }

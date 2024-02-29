@@ -53,5 +53,6 @@ module.exports = {
     'arrow-body-style': 'warn',
     'react/prop-types': 'off',
     'no-param-reassign': 'off',
+    'react/no-array-index-key': 'off',
   },
 }

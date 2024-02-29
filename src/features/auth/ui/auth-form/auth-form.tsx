@@ -1,22 +1,9 @@
-import { Button, Stack, Text } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom'
 
-import { useState } from 'react'
-
-import { useSigninMutation } from '../../api/endpoints'
+import { SigninForm, SignupForm } from '..'
 
 export const AuthForm = () => {
-  const [signinData] = useState({
-    email: 'gmasmin@gmail.com',
-    password: '12345678',
-  })
+  const { action } = useParams<{ action: 'signin' | 'signup' }>()
 
-  const [signin] = useSigninMutation()
-  return (
-    <Stack spacing={2} maxW="2xl">
-      <Text fontSize="4xl">AuthForm:</Text>
-      <Text fontSize="2xl">{signinData.email}</Text>
-      <Text fontSize="2xl">{signinData.password}</Text>
-      <Button onClick={() => signin(signinData)}>login</Button>
-    </Stack>
-  )
+  return action === 'signin' ? <SigninForm /> : <SignupForm />
 }

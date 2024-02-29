@@ -1,91 +1,65 @@
-import {
-  AspectRatio,
-  Avatar,
-  Badge,
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Avatar, Heading, Image, Text } from '@chakra-ui/react'
 
+import { getUrl } from '~/shared/lib'
 import { Path, root } from '~/shared/paths'
+import { CharacteristicsPreview } from '~/entities/member/ui'
 import { MemberDto } from '~/entities/member/model/types/member.interface'
 
+import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Characteristic } from '../characteristic'
-import { LikeMemberButton } from '../like-member/ui'
+import { MemberCardCompose } from './member-card-compose'
 
-export interface MemberCardProps extends MemberDto {}
+export interface MemberCardProps extends MemberDto {
+  likeButton: ReactNode
+}
 
 export const MemberCard = ({
-  id,
+  // id,
   gallery,
   name,
   authorAvatarURL,
   authorId,
   description,
   characteristics,
+  likesCount,
+  likeButton,
 }: MemberCardProps) => {
   const getApiImage = (path: string | undefined) => (path ? `http://localhost:5000/${path}` : '')
 
-  const mainImage = gallery.find((image) => image.isMain)?.imageUrl
+  const mainImage = gallery.find((image) => image.isMain)?.imageUrl ?? ''
+
+  const src = mainImage
+    ? getUrl(mainImage)
+    : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=1024x1024&w=is&k=20&c=5aen6wD1rsiMZSaVeJ9BWM4GGh5LE_9h97haNpUQN5I='
 
   return (
-    <Card maxW={{ base: 'min-content', sm: 'max-content' }}>
-      <CardBody>
-        <AspectRatio ratio={4 / 3}>
-          <Image src={getApiImage(mainImage)} alt={name} borderRadius="lg" />
-        </AspectRatio>
-        <Box position="relative">
-          <Avatar
-            as={Link}
-            to={root(Path.profile, `${authorId}`)}
-            position="absolute"
-            left="50%"
-            top="-30px"
-            transform="translateX(-50%)"
-            size="lg"
-            src={getApiImage(authorAvatarURL)}
-          />
-        </Box>
-        <Stack mt="6" spacing="3">
-          <Heading size="md" textTransform="capitalize">
-            {name}
-          </Heading>
-          <Text noOfLines={1}>{description}</Text>
-          <Divider />
+    <MemberCardCompose
+      avatar={
+        <Avatar
+          as={Link}
+          to={root(Path.profile, `${authorId}`)}
+          src={getApiImage(authorAvatarURL)}
+          size="lg"
+        />
+      }
+      name={
+        <Heading size="md" textTransform="capitalize">
+          {name}
+        </Heading>
+      }
+      description={<Text noOfLines={1}>{description}</Text>}
+      image={<Image src={src} alt={name} borderRadius="lg" />}
+      characteristics={
+        <>
           <Heading size="md" textTransform="capitalize">
             Characteristics:
           </Heading>
-          <Flex gap={4} alignItems="center">
-            <Characteristic
-              key={characteristics[1].id}
-              name={characteristics[1].name}
-              rating={characteristics[1].rating}
-            />
-            {characteristics.length > 1 && (
-              <Badge variant="solid">and {characteristics.length - 1} more...</Badge>
-            )}
-          </Flex>
-        </Stack>
-      </CardBody>
-      <Divider />
-      <CardFooter position="relative">
-        <LikeMemberButton
-          memberId={id}
-          position="absolute"
-          left="50%"
-          top="-20px"
-          transform="translateX(-50%)"
-        />
-      </CardFooter>
-    </Card>
+          <CharacteristicsPreview characteristics={characteristics} />
+        </>
+      }
+      likeButton={likeButton}
+      likes={<Text>{likesCount} people like it!</Text>}
+    />
   )
 }

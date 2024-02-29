@@ -1,40 +1,57 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
 
+import { getAuthorizationHeader } from '~/shared/lib'
+import { ID } from '~/shared/types/id.interface'
+import { HTTPMethod } from '~/shared/api/http-method.enum'
+import { baseQueryWithReAuth } from '~/shared/api/base-query-with-re-auth'
 import { PaginationParams, WithPagination } from '~/shared/types/pagination.interface'
 
 import { CreateMemberDto, MemberDto, MemberFilterParams, UpdateMemberDto } from '../model/types'
 import { MemberGallery } from '../model/types/member-gallery.interface'
 
+enum Tag {
+  member = 'Members',
+}
+
 export const membersApi = createApi({
   reducerPath: 'members',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  baseQuery: baseQueryWithReAuth('members'),
+  tagTypes: [Tag.member],
   endpoints: (build) => ({
     createMember: build.mutation<MemberDto, CreateMemberDto>({
       query: (createMemberDto) => ({
-        url: `/members`,
-        method: 'POST',
+        url: '',
+        method: HTTPMethod.POST,
         body: createMemberDto,
+        headers: getAuthorizationHeader('access'),
       }),
     }),
     findAllMembers: build.query<WithPagination<MemberDto>, PaginationParams>({
       query: (queryArg) => ({
-        url: `/members`,
+        url: '',
         params: { limit: queryArg.limit, offset: queryArg.offset },
       }),
+      providesTags: [Tag.member],
     }),
     uploadMemberGallery: build.mutation<MemberGallery[], FormData>({
       query: (formData) => ({
-        url: `/members/gallery/${formData.get('memberId')}`,
-        method: 'POST',
+        url: `/gallery/${formData.get('memberId')}`,
+        method: HTTPMethod.POST,
         body: formData,
+        headers: getAuthorizationHeader('access'),
       }),
     }),
-    likeMember: build.mutation<MemberDto, { id: number }>({
-      query: (queryArg) => ({ url: `/members/like/${queryArg.id}`, method: 'PATCH' }),
+    likeMember: build.mutation<MemberDto, number>({
+      query: (id) => ({
+        url: `/like/${id}`,
+        method: HTTPMethod.PATCH,
+        headers: getAuthorizationHeader('access'),
+      }),
+      invalidatesTags: [Tag.member],
     }),
     findAllMembersByFilter: build.query<WithPagination<MemberDto>, MemberFilterParams>({
       query: (queryArg) => ({
-        url: `/members/filter`,
+        url: `/filter`,
         params: {
           limit: queryArg.limit,
           offset: queryArg.offset,
@@ -43,21 +60,36 @@ export const membersApi = createApi({
           categoryId: queryArg.categoryId,
         },
       }),
+      providesTags: (result) =>
+        result
+          ? [...result.data.map(({ id }) => ({ type: Tag.member as const, id })), Tag.member]
+          : [Tag.member],
     }),
-    findOneMember: build.query<MemberDto, { id: number }>({
-      query: (queryArg) => ({ url: `/members/${queryArg.id}` }),
+    findOneMember: build.query<MemberDto, ID>({
+      query: (queryArg) => ({ url: `/${queryArg.id}` }),
+      providesTags: [Tag.member],
     }),
     updateMember: build.mutation<MemberDto, { id: number; updateMemberDto: UpdateMemberDto }>({
       query: ({ id, updateMemberDto }) => ({
-        url: `/members/${id}`,
-        method: 'PATCH',
+        url: `/${id}`,
+        method: HTTPMethod.PATCH,
         body: updateMemberDto,
+        headers: getAuthorizationHeader('access'),
       }),
     }),
-    removeMember: build.mutation<null, { id: number }>({
-      query: (queryArg) => ({ url: `/members/${queryArg.id}`, method: 'DELETE' }),
+    removeMember: build.mutation<null, ID>({
+      query: (queryArg) => ({
+        url: `/${queryArg.id}`,
+        method: HTTPMethod.DELETE,
+        headers: getAuthorizationHeader('access'),
+      }),
     }),
   }),
 })
 
-export const { useFindAllMembersQuery } = membersApi
+export const {
+  useFindAllMembersQuery,
+  useFindAllMembersByFilterQuery,
+  useLazyFindAllMembersByFilterQuery,
+  useLikeMemberMutation,
+} = membersApi

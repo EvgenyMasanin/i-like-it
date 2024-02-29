@@ -1,34 +1,43 @@
-import { Hide, Spinner } from '@chakra-ui/react'
+import { Hide } from '@chakra-ui/react'
 
 import { CardsGrid } from '~/shared/ui'
 import { Path } from '~/shared/paths'
 import { Search } from '~/features/search/ui'
+import { CategoryCardSkeleton } from '~/entities/category/ui'
 import { CategoryCard } from '~/entities/category/ui/category-card'
-import { useLoading, useTypedLoaderData } from '~/shared/hooks/react-router-dom'
-import { CategoryDto } from '~/entities/category/model/types/category.interface'
+import { useFindAllCategoriesQuery } from '~/entities/category/api/category.api'
 
+import { useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
 export const Categories = () => {
   const { pathname } = useLocation()
 
-  const categories = useTypedLoaderData<CategoryDto[]>()
+  const { data, isLoading, isError } = useFindAllCategoriesQuery({ limit: 10, offset: 0 })
 
-  const isLoading = useLoading()
-  if (isLoading) return <Spinner />
+  const skeletons = useRef(
+    Array(5)
+      .fill(0)
+      .map((_, i) => <CategoryCardSkeleton key={i} />)
+  )
+
+  if (isError) return 'error'
 
   if (pathname !== `/${Path.categories}`) {
     return <Outlet />
   }
+
+  const categories = data?.data
 
   return (
     <CardsGrid>
       <Hide above="md">
         <Search />
       </Hide>
-      {categories.map((props) => (
-        <CategoryCard {...props} key={props.name} />
-      ))}
+
+      {isLoading
+        ? skeletons.current
+        : categories?.map((props) => <CategoryCard {...props} key={props.id} />)}
     </CardsGrid>
   )
 }

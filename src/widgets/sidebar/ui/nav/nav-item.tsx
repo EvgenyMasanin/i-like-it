@@ -42,7 +42,6 @@ export const NavItem = ({ icon, children, collapsed, path, ...rest }: NavItemPro
       >
         {icon && (
           <Icon
-            fontSize="2xl"
             color={iconColor}
             _groupHover={{
               color: colors.color,

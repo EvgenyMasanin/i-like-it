@@ -41,8 +41,6 @@ export interface CreateMemberDto {
 export type UpdateMemberDto = Partial<CreateMemberDto>
 
 export interface MemberFilterParams extends PaginationParams {
-  limit?: number
-  offset?: number
   name?: string
   authorId?: number
   categoryId?: number

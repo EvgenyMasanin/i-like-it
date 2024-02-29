@@ -13,9 +13,10 @@ export interface AppProps {}
 export const Root = () => {
   const { state } = useNavigation()
 
-  const { isLoading } = useAuth()
+  const { isLoading, isAuthorizeFailed, isAuth } = useAuth('init')
 
   if (isLoading) return <Spinner />
+  if (!isAuthorizeFailed && !isAuth) return <Spinner />
 
   return (
     <Flex h="100vh" flexDirection="column">
@@ -23,7 +24,9 @@ export const Root = () => {
       <Header />
       <Main>
         <Sidebar />
-        <Box overflow="auto">{state === 'loading' ? <Spinner /> : <Outlet />}</Box>
+        <Box px={5} overflow="auto">
+          {state === 'loading' ? <Spinner /> : <Outlet />}
+        </Box>
       </Main>
     </Flex>
   )
