@@ -13,22 +13,27 @@
     "postinstall": "npm run gen:theme-typings"
   },
   "dependencies": {
+    "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.0.1",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.50.1",
     "react-icons": "^4.12.0",
     "react-redux": "^9.0.3",
-    "react-router-dom": "^6.20.1"
+    "react-router-dom": "^6.20.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1",
     "@feature-sliced/eslint-config": "^0.1.0-beta.6",
     "@feature-sliced/eslint-plugin-messages": "^0.1.0-beta.2",
+    "@hookform/devtools": "^4.3.1",
     "@rtk-query/codegen-openapi": "^1.2.0",
     "@types/json-schema": "^7.0.15",
     "@types/react": "^18.2.15",

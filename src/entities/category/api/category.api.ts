@@ -69,4 +69,5 @@ export const {
   useCreateCategoryMutation,
   useFindAllCategoriesByFilterQuery,
   useFindOneCategoryQuery,
+  useUpdateCategoryMutation,
 } = categoryApi

@@ -1,11 +1,9 @@
-import { theme } from '@chakra-ui/react'
-
-import { RecursivePartial } from '~/shared/types/utils'
-
 import { inputTheme } from './input/input'
 import { buttonTheme } from './button/button'
+import { dropZone } from './drop-zone/drop-zone'
 
-export const components: RecursivePartial<typeof theme.components> = {
+export const components = {
   Button: buttonTheme,
   Input: inputTheme,
+  DropZone: dropZone,
 }

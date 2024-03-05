@@ -1,15 +1,16 @@
-import { theme } from '@chakra-ui/react'
-import { GetDefaultVariantStyle } from '../button.types'
+import { SystemStyleFunction, theme } from '@chakra-ui/react'
+
+import { ButtonChakraVariants } from '~/shared/theme'
+
 import { getNewDefaultButtonVariantStyleFunction } from './getNewDefaultButtonVariantStyleFunction'
 
-export const getDefaultVariantStyle: GetDefaultVariantStyle = (
-  props,
-  buttonVariant
-) => {
-  const chakraVariantStyle = theme.components.Button.variants![buttonVariant]
+export const getDefaultVariantStyle =
+  (buttonVariant: ButtonChakraVariants): SystemStyleFunction =>
+  (props) => {
+    const chakraVariantStyle = theme.components.Button.variants![buttonVariant]
 
-  return {
-    ...chakraVariantStyle(props),
-    ...getNewDefaultButtonVariantStyleFunction(buttonVariant)(props),
+    return {
+      ...chakraVariantStyle(props),
+      ...getNewDefaultButtonVariantStyleFunction(buttonVariant)(props),
+    }
   }
-}

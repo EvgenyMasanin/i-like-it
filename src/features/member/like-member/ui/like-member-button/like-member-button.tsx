@@ -19,15 +19,13 @@ export interface LikeMemberButtonProps extends FlexProps {
 
 const MIconButton = motion(IconButton)
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const LikeMemberButton = ({ memberId, usersLikesIds, ...props }: LikeMemberButtonProps) => {
-  const [like] = useLikeMemberMutation()
+  const [likeMember] = useLikeMemberMutation()
   const { isAuth } = useAuth()
   const navigate = useNavigate()
   const currentUserId = useSelector(selectUserId)
 
   const isCurrentUserLiked = usersLikesIds.some((userId) => userId === currentUserId)
-
   const [isLiked, setIsLiked] = useState(isCurrentUserLiked)
 
   const handleClick = () => {
@@ -36,8 +34,8 @@ export const LikeMemberButton = ({ memberId, usersLikesIds, ...props }: LikeMemb
       return
     }
 
-    like(memberId)
-    setIsLiked((prev) => !prev)
+    likeMember(memberId)
+    setIsLiked((prevIsLiked) => !prevIsLiked)
   }
 
   return (

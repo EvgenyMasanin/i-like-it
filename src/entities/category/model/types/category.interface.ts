@@ -1,5 +1,7 @@
 import { PaginationParams } from '~/shared/types/pagination.interface'
 
+import { CreateCategoryDto } from '../schemas/category.schemas'
+
 export interface CategoryDto {
   id: number
   name: string
@@ -11,11 +13,11 @@ export interface CategoryDto {
 }
 // TODO: form-data
 
-export type CreateCategoryDto = {
-  name: string
-  description: string
-  categoryImage: any
-}
+// export type CreateCategoryDto = {
+//   name: string
+//   description: string
+//   categoryImage: FileList
+// }
 
 export type UpdateCategoryDto = Partial<CreateCategoryDto>
 

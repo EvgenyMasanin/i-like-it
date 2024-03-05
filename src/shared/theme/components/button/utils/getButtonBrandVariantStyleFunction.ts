@@ -1,30 +1,30 @@
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+import { ButtonChakraVariants } from '~/shared/theme'
 import { brandHoverBg } from '~/shared/theme/colors'
 
 import { getDefaultVariantStyle } from './getDefaultVariantStyle'
-import { BrandVariants, GetButtonBrandVariantStyleFunction } from '../button.types'
 
-export const getButtonBrandVariantStyleFunction: GetButtonBrandVariantStyleFunction =
-  (buttonVariant) => (props) => {
-    const { colorMode } = props
-    const isDarkMode = colorMode === 'dark'
-    const defaultVariantStyle = getDefaultVariantStyle(props, buttonVariant)
+export const getButtonBrandVariantStyleFunction = (buttonVariant: ButtonChakraVariants) => {
+  const getDefaultStyle = getDefaultVariantStyle(buttonVariant)
 
-    const darkBrandGhostStyle = {
-      ...defaultVariantStyle,
-      color: props.colorScheme === 'brand' ? 'white' : 'initial',
-      _hover: {
-        bg: props.colorScheme === 'brand' ? brandHoverBg : 'initial',
-      },
-    }
+  const darkBrandGhostStyle = defineStyle((props) => ({
+    ...getDefaultStyle(props),
+    color: props.colorScheme === 'brand' ? 'white' : 'initial',
+    _hover: {
+      bg: props.colorScheme === 'brand' ? brandHoverBg : 'initial',
+    },
+  }))
 
-    const lightBrandVariantStyle = defaultVariantStyle
+  const brandVariants = defineStyleConfig({
+    variants: {
+      ghost: (props) =>
+        props.colorMode === 'dark' ? darkBrandGhostStyle(props) : getDefaultStyle(props),
+      link: (props) => getDefaultStyle(props),
+      outline: (props) => getDefaultStyle(props),
+      solid: (props) => getDefaultStyle(props),
+    },
+  })
 
-    const brandVariants: BrandVariants = {
-      ghost: isDarkMode ? darkBrandGhostStyle : lightBrandVariantStyle,
-      link: { ...defaultVariantStyle },
-      outline: { ...defaultVariantStyle },
-      solid: { ...defaultVariantStyle },
-    }
-
-    return brandVariants[buttonVariant]
-  }
+  return brandVariants.variants![buttonVariant]
+}

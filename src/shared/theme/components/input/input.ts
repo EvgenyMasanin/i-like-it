@@ -1,32 +1,31 @@
-import { StyleFunctionProps, theme } from '@chakra-ui/react'
-
-import { RecursivePartial } from '~/shared/types/utils'
+import { inputAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, StyleFunctionProps } from '@chakra-ui/react'
 
 import { isCustomColorScheme } from './input.types'
 import { brandColorModeShade, colors } from '../../colors'
 
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  inputAnatomy.keys
+)
+
 const inputColorSchemeStyleFunction = ({ colorScheme, colorMode }: StyleFunctionProps) => {
+  const isChakraColorScheme = !isCustomColorScheme(colorScheme)
+  if (isChakraColorScheme) return {}
+
   const colorShade = brandColorModeShade[colorMode]
-
-  if (!isCustomColorScheme(colorScheme)) return {}
-
   const color = colors[colorScheme][colorShade]
 
-  return {
+  return definePartsStyle({
     field: {
       _focusVisible: {
         borderColor: color,
         boxShadow: `0 0 0 1px ${color}`,
       },
-      _invalid: {
-        // borderColor: 'red',
-        // boxShadow: string;
-      },
     },
-  }
+  })
 }
 
-export const inputTheme: RecursivePartial<typeof theme.components.Input> = {
+export const inputTheme = defineMultiStyleConfig({
   defaultProps: {
     colorScheme: 'brand',
   },
@@ -35,4 +34,4 @@ export const inputTheme: RecursivePartial<typeof theme.components.Input> = {
     flushed: inputColorSchemeStyleFunction,
     filled: inputColorSchemeStyleFunction,
   },
-}
+})

@@ -1,7 +1,8 @@
 import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+
+import { sizes } from './sizes'
 import { colors } from './colors'
 import { components } from './components'
-import { sizes } from './sizes'
 
 export const theme = extendTheme(
   {
