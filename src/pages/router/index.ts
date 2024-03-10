@@ -1,3 +1,3 @@
 export * from './root'
 export * from './app-router'
-export * from './rotes'
+export * from './routes'

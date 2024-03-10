@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   ChangeEventHandler,
   DragEventHandler,
   MouseEventHandler,
@@ -17,10 +16,10 @@ export interface FileValidator {
 
 export interface UseDropZoneFileInput {
   multiple?: boolean
-  handleDrop: (fileList: FileList) => void
-  onChange: (e: ChangeEvent<HTMLInputElement>, isValid: boolean) => void
+  handleDrop: (files: File[]) => void
+  onChange: (files: File[], isValid: boolean) => void
   validators?: FileValidator[]
-  onFileDelete: (fileToDelete: FileList) => void
+  onFileDelete: (filteredFiles: File[]) => void
 }
 
 export const useDropZoneFileInput = ({
@@ -42,12 +41,16 @@ export const useDropZoneFileInput = ({
 
     if (!isValid && fileInputRef.current) {
       fileInputRef.current.files = getFileList([])
-      onChange(e, false)
+      onChange(files, false)
       return
     }
 
     setFiles(files)
-    onChange(e, true)
+    onChange(files, true)
+
+    if (fileInputRef.current) {
+      fileInputRef.current.files = getFileList(files)
+    }
   }
 
   const openFileDialog: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -80,7 +83,8 @@ export const useDropZoneFileInput = ({
 
     setFiles(files)
 
-    handleDrop(getFileList(files)) // it must be different fileLists
+    // handleDrop(getFileList(files)) // it must be different fileLists
+    handleDrop(files) // it must be different fileLists
     fileInputRef.current.files = getFileList(files)
   }
 
@@ -92,7 +96,8 @@ export const useDropZoneFileInput = ({
 
     const fileList = getFileList(filteredFiles)
 
-    onFileDelete(fileList)
+    // onFileDelete(fileList)
+    onFileDelete(filteredFiles)
     fileInputRef.current.files = fileList
   }
   const resetField = () => {

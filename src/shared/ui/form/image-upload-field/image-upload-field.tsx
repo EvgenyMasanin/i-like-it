@@ -1,6 +1,6 @@
 import { Box, IconButton, SimpleGrid } from '@chakra-ui/react'
 
-import { validateImage } from '~/shared/lib/validate-image'
+import { validateImage } from '~/shared/lib'
 
 import { forwardRef } from 'react'
 import { IoIosClose } from 'react-icons/io'

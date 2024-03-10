@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom'
 
 export interface HeaderMenuProps {
   buttonAvatar: ReactElement
-  menuAvatar: ReactElement
+  menuAvatar: ReactNode
   username: ReactNode
   themeSwitcher: ReactNode
   authButton: ReactNode

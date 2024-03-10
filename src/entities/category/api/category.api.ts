@@ -1,15 +1,15 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 
-import { getAuthorizationHeader } from '~/shared/lib'
 import { ID } from '~/shared/types/id.interface'
+import { getAuthorizationHeader, getFormData } from '~/shared/lib'
 import { HTTPMethod } from '~/shared/api/http-method.enum'
 import { baseQueryWithReAuth } from '~/shared/api/base-query-with-re-auth'
 import { PaginationParams, WithPagination } from '~/shared/types/pagination.interface'
 
+import { CreateCategoryDto } from '../model'
 import {
   CategoryDto,
   CategoryFilterParams,
-  CreateCategoryDto,
   UpdateCategoryDto,
 } from '../model/types/category.interface'
 
@@ -21,7 +21,7 @@ export const categoryApi = createApi({
       query: (queryArg) => ({
         url: '',
         method: HTTPMethod.POST,
-        body: queryArg,
+        body: getFormData(queryArg),
         headers: getAuthorizationHeader('access'),
       }),
     }),

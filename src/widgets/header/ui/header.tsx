@@ -1,6 +1,7 @@
 import { Button, ButtonGroup, useColorModeValue } from '@chakra-ui/react'
 
 import { Path } from '~/shared/paths'
+import { Logo } from '~/entities/logo'
 import { Search } from '~/features/search'
 import { LogoutButton } from '~/features/auth'
 import { useAuth } from '~/features/auth/lib/hooks'
@@ -30,6 +31,7 @@ export const Header = ({}: HeaderProps) => {
 
   return (
     <UIHeader
+      logo={<Logo mx="auto" minW={205} />}
       actionButton={<SidebarActionButton />}
       searchBar={
         <Search mx={10} w="full" maxW={600} bg={useColorModeValue('transparent', 'gray.800')} />

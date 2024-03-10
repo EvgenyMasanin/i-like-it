@@ -5,7 +5,7 @@ import { useRef } from 'react'
 
 export const CategoryMembersSkeleton = () => {
   const membersSkeleton = useRef(
-    Array(5)
+    Array(3)
       .fill(0)
       .map((_, i) => <MemberCardSkeleton key={i} />)
   )

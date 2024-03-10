@@ -1,14 +1,15 @@
-import { ChangeEvent } from 'react'
 import { FieldPath, FieldValues, PathValue, RegisterOptions, useFormContext } from 'react-hook-form'
 
 interface ImageUploadFieldProps<T extends FieldValues> {
   name: FieldPath<T>
   registerOptions?: RegisterOptions<T, FieldPath<T>>
+  multiple?: boolean
 }
 
 export function useImageUploadField<T extends FieldValues>({
   name,
   registerOptions,
+  multiple = false,
 }: ImageUploadFieldProps<T>) {
   const {
     register,
@@ -18,9 +19,9 @@ export function useImageUploadField<T extends FieldValues>({
     clearErrors,
   } = useFormContext<T>()
 
-  const { onChange, ...registerProps } = register(name, registerOptions)
+  const registerProps = register(name, registerOptions)
 
-  const onImagesDelete = (files: FileList) => {
+  const onImagesDelete = (files: File[]) => {
     setValue(name, files as PathValue<T, FieldPath<T>>)
   }
 
@@ -36,25 +37,27 @@ export function useImageUploadField<T extends FieldValues>({
     setValidationError(name)
   }
 
-  const handleDrop = (files: FileList) => {
+  const handleDrop = (files: File[]) => {
     setValue(name, files as PathValue<T, FieldPath<T>>)
   }
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>, isValid: boolean) => {
+  const handleChange = (files: File[], isValid: boolean) => {
     if (isValid) {
-      onChange(e)
+      setValue(name, files as PathValue<T, FieldPath<T>>)
+
       return
     }
     setValidationError(name)
   }
 
   return {
+    ...registerProps,
     onFileDelete: onImagesDelete,
     onDropValidate: handleDropValidate,
-    onChange: handleChange,
     handleDrop,
     isInvalid: !!errors[name],
     errorMessage: errors[name]?.message?.toString(),
-    ...registerProps,
+    multiple,
+    onChange: handleChange,
   }
 }

@@ -23,7 +23,9 @@ export const MemberCardCompose = ({
 }: MemberCardComposeProps) => (
   <Card maxW="min-content">
     <CardBody>
-      <AspectRatio ratio={4 / 3}>{image}</AspectRatio>
+      <AspectRatio ratio={4 / 3} rounded="lg">
+        {image}
+      </AspectRatio>
       <Box position="relative" mb={10}>
         <Box position="absolute" left="50%" top="-30px" transform="translateX(-50%)">
           {avatar}

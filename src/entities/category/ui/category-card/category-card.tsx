@@ -1,6 +1,7 @@
-import { AspectRatio, Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 
 import { getUrl } from '~/shared/lib'
+import { LazyImage } from '~/shared/ui'
 import { Path } from '~/shared/paths'
 
 import { Link } from 'react-router-dom'
@@ -11,19 +12,20 @@ export interface CategoryCardProps {
   imageUrl: string
 }
 
-export const CategoryCard = ({ id, imageUrl: imgCrs, name }: CategoryCardProps) => (
+export const CategoryCard = ({ id, imageUrl, name }: CategoryCardProps) => (
   <Flex
     rounded="lg"
     position="relative"
     justifyContent="center"
+    alignItems="center"
     as={Link}
     to={`${Path.category}/${id}`}
     w="full"
     maxW="lg"
+    minW={300}
+    aspectRatio={4 / 3}
   >
-    <AspectRatio w="full" ratio={4 / 3}>
-      <Image src={getUrl(imgCrs)} rounded="lg" />
-    </AspectRatio>
+    <LazyImage src={getUrl(imageUrl)} aspectRatio={4 / 3} />
     <Shadow />
     <Text fontSize="2xl" position="absolute" bottom="5%" fontWeight="bold" color="white">
       {name}
@@ -35,7 +37,7 @@ const Shadow = () => (
   <Box
     bgGradient="linear(transparent,transparent, blackAlpha.700)"
     position="absolute"
-    rounded="lg"
+    rounded="inherit"
     inset={0}
   />
 )

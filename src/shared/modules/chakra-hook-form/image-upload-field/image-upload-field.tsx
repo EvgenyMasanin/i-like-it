@@ -20,14 +20,8 @@ export const ImageUploadField = <T extends FieldValues>({
   const imageUploadProps = useImageUploadField({
     name,
     registerOptions,
+    multiple,
   })
 
-  return (
-    <UIImageUploadField
-      {...imageUploadProps}
-      multiple={multiple}
-      label={label}
-      placeholder={placeholder}
-    />
-  )
+  return <UIImageUploadField {...imageUploadProps} label={label} placeholder={placeholder} />
 }

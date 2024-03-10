@@ -1,6 +1,7 @@
-import { Avatar, Heading, Image, Text } from '@chakra-ui/react'
+import { Avatar, Heading, Text } from '@chakra-ui/react'
 
 import { getUrl } from '~/shared/lib'
+import { LazyImage } from '~/shared/ui'
 import { Path, root } from '~/shared/paths'
 import { CharacteristicsPreview } from '~/entities/member/ui'
 import { MemberDto } from '~/entities/member/model/types/member.interface'
@@ -15,7 +16,6 @@ export interface MemberCardProps extends MemberDto {
 }
 
 export const MemberCard = ({
-  // id,
   gallery,
   name,
   authorAvatarURL,
@@ -25,13 +25,7 @@ export const MemberCard = ({
   likesCount,
   likeButton,
 }: MemberCardProps) => {
-  const getApiImage = (path: string | undefined) => (path ? `http://localhost:5000/${path}` : '')
-
-  const mainImage = gallery.find((image) => image.isMain)?.imageUrl ?? ''
-
-  const src = mainImage
-    ? getUrl(mainImage)
-    : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=1024x1024&w=is&k=20&c=5aen6wD1rsiMZSaVeJ9BWM4GGh5LE_9h97haNpUQN5I='
+  const mainImageUrl = gallery.find((image) => image.isMain)?.imageUrl ?? ''
 
   return (
     <MemberCardCompose
@@ -39,7 +33,7 @@ export const MemberCard = ({
         <Avatar
           as={Link}
           to={root(Path.profile, `${authorId}`)}
-          src={getApiImage(authorAvatarURL)}
+          src={getUrl(authorAvatarURL)}
           size="lg"
         />
       }
@@ -49,7 +43,7 @@ export const MemberCard = ({
         </Heading>
       }
       description={<Text noOfLines={1}>{description}</Text>}
-      image={<Image src={src} alt={name} borderRadius="lg" />}
+      image={<LazyImage src={getUrl(mainImageUrl)} alt={name} />}
       characteristics={
         <>
           <Heading size="md" textTransform="capitalize">

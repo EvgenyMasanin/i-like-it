@@ -1,3 +1,4 @@
+import { AnimatedPage } from '~/shared/ui'
 import { Path } from '~/shared/paths/paths'
 
 import { RouteObject } from 'react-router-dom'
@@ -60,12 +61,24 @@ export const rootChildren: RouteObject[] = [
   },
 ]
 
-export const rotes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: Path.root,
     element: <Root />,
     errorElement: <NotFoundPage />,
-    children: rootChildren,
+    children: addAnimation(rootChildren),
   },
   { path: `${Path.auth}/:action`, element: <AuthPage /> },
 ]
+
+function addAnimation(routes: RouteObject[]): RouteObject[] {
+  return routes.map((route) => {
+    if (route.children) {
+      route.children = addAnimation(route.children)
+    }
+    return {
+      ...route,
+      element: <AnimatedPage key={route.path}>{route.element}</AnimatedPage>,
+    }
+  })
+}

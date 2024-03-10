@@ -8,19 +8,19 @@ import {
   useMergeRefs,
 } from '@chakra-ui/react'
 
-import { ChangeEvent, forwardRef, MouseEventHandler, ReactNode } from 'react'
+import { forwardRef, MouseEventHandler, ReactNode } from 'react'
 
 import FilesPreview from './files-preview'
 import { FileDropZone } from './file-drop-zone'
 import { FileValidator, useDropZoneFileInput } from './use-file-drop-zone'
 
 export interface FileUploadProps extends Omit<InputProps, 'onChange'> {
-  handleDrop: (files: FileList) => void
-  onChange: (e: ChangeEvent<HTMLInputElement>, isValid: boolean) => void
+  handleDrop: (files: File[]) => void
+  onChange: (files: File[], isValid: boolean) => void
   label: string
   errorMessage?: string
   validators?: FileValidator[]
-  onFileDelete: (fileToDelete: FileList) => void
+  onFileDelete: (filteredFiles: File[]) => void
   renderFilesPreview?: (files: File[], onFileDelete: (file: File) => () => void) => ReactNode
 }
 
